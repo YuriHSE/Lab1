@@ -310,6 +310,29 @@ namespace linalg {
         return rank;
     }
 
+    Matrix Matrix::concatenate(const Matrix& left, const Matrix& right) {
+        if (left.rows() != right.rows()) {
+            throw std::runtime_error("Количество строк должно совпадать");
+        }
+
+        Matrix result(left.rows(), left.columns() + right.columns());
+
+        // Заполнение левой части
+        for (size_t i = 0; i < left.rows(); ++i) {
+            for (size_t j = 0; j < left.columns(); ++j) {
+                result(i, j) = left(i, j);
+            }
+        }
+
+        // Заполнение правой части
+        for (size_t i = 0; i < right.rows(); ++i) {
+            for (size_t j = 0; j < right.columns(); ++j) {
+                result(i, j + left.columns()) = right(i, j);
+            }
+        }
+
+        return result;
+    }
 
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {

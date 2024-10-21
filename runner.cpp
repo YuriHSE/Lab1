@@ -4,11 +4,9 @@
 int main() {
     using namespace linalg;
 
-    Matrix m = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-
-    std::cout << "Норма:" << m.norm() << std::endl;
-    std::cout << "След: " << m.trace() << std::endl;
-    std::cout << "Определитель: " << m.det() << std::endl;
-    std::cout << "Ранг: " << m.rank() << std::endl;
+    Matrix m1 = {{1, 2}, {3, 4}};
+    Matrix m2 = {{5, 6}, {7, 8}};
+    Matrix m3 = Matrix::concatenate(m1, m2);
+    std::cout << m3;
     return 0;
 }

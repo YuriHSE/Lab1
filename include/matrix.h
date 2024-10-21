@@ -67,6 +67,11 @@ namespace linalg {
         double trace() const; // След
         double det() const; // Определитель
         int rank(); // Ранг
+
+        static Matrix concatenate(const Matrix& left, const Matrix& right);
+        static Matrix transpose(const Matrix& matr);
+        static Matrix invert(const Matrix& matr);
+        static Matrix power(const Matrix& matr, int exponent);
     };
 
 }
