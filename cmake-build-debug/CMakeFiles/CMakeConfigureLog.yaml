@@ -419,3 +419,39 @@ events:
       LTO support using: LLVM version 14.0.0, (clang-1400.0.29.202) (static support for 29, runtime is 29)
       TAPI support using: Apple TAPI version 14.0.0 (tapi-1400.0.11)
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/Users/yurishcherbakov/anaconda3/lib/cmake/GTest/GTestConfig.cmake:29 (find_dependency)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindGTest.cmake:194 (find_package)"
+      - "CMakeLists.txt:16 (find_package)"
+    directories:
+      source: "/Users/yurishcherbakov/CLionProjects/untitled/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-mFk6eF"
+      binary: "/Users/yurishcherbakov/CLionProjects/untitled/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-mFk6eF"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.4"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/yurishcherbakov/CLionProjects/untitled/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-mFk6eF'
+        
+        Run Build Command(s): /Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -v cmTC_0f01f
+        [1/2] /Library/Developer/CommandLineTools/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.4 -fcolor-diagnostics -MD -MT CMakeFiles/cmTC_0f01f.dir/src.c.o -MF CMakeFiles/cmTC_0f01f.dir/src.c.o.d -o CMakeFiles/cmTC_0f01f.dir/src.c.o -c /Users/yurishcherbakov/CLionProjects/untitled/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-mFk6eF/src.c
+        [2/2] : && /Library/Developer/CommandLineTools/usr/bin/cc -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.4 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/cmTC_0f01f.dir/src.c.o -o cmTC_0f01f   && :
+        
+      exitCode: 0
+...

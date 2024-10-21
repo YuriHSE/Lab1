@@ -50,7 +50,7 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				2
 			]
 		}
 	],
@@ -84,14 +84,14 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				2
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				2
+				1
 			]
 		}
 	],
@@ -105,14 +105,14 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "runner.cpp",
-			"sourceGroupIndex" : 0
+			"path" : "include/matrix.h",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "include/matrix.h",
-			"sourceGroupIndex" : 1
+			"compileGroupIndex" : 0,
+			"path" : "tests/test1.cpp",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"

@@ -55,11 +55,11 @@ build CMakeFiles/untitled.dir/src/matrix.cpp.o: CXX_COMPILER__untitled_unscanned
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir/src
 
-build CMakeFiles/untitled.dir/runner.cpp.o: CXX_COMPILER__untitled_unscanned_Debug /Users/yurishcherbakov/CLionProjects/untitled/runner.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles/untitled.dir/runner.cpp.o.d
+build CMakeFiles/untitled.dir/tests/test1.cpp.o: CXX_COMPILER__untitled_unscanned_Debug /Users/yurishcherbakov/CLionProjects/untitled/tests/test1.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles/untitled.dir/tests/test1.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.4 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles/untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles/untitled.dir/tests
 
 
 # =============================================================================
@@ -69,7 +69,7 @@ build CMakeFiles/untitled.dir/runner.cpp.o: CXX_COMPILER__untitled_unscanned_Deb
 #############################################
 # Link the executable untitled
 
-build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/src/matrix.cpp.o CMakeFiles/untitled.dir/runner.cpp.o
+build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/src/matrix.cpp.o CMakeFiles/untitled.dir/tests/test1.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.4
   OBJECT_DIR = CMakeFiles/untitled.dir
   POST_BUILD = :
