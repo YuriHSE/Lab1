@@ -9,5 +9,6 @@ int main() {
     std::cout << "Норма:" << m.norm() << std::endl;
     std::cout << "След: " << m.trace() << std::endl;
     std::cout << "Определитель: " << m.det() << std::endl;
+    std::cout << "Ранг: " << m.rank() << std::endl;
     return 0;
 }

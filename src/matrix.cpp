@@ -291,6 +291,25 @@ namespace linalg {
         return sub;
     }
 
+    int Matrix::rank() {
+        Matrix temp = *this;
+        size_t rank = 0;
+
+        for (size_t row = 0; row < m_rows; ++row) {
+            if (temp(row, row) != 0) {
+                ++rank;
+                for (size_t i = row + 1; i < m_rows; ++i) {
+                    double factor = temp(i, row) / temp(row, row);
+                    for (size_t j = row; j < m_columns; ++j) {
+                        temp(i, j) -= factor * temp(row, j);
+                    }
+                }
+            }
+        }
+
+        return rank;
+    }
+
 
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
