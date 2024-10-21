@@ -1,40 +1,29 @@
 #include "include/matrix.h"
-#include <iostream>
-
-class Runner {
-public:
-    static void run() {
-
-        linalg::Matrix mat(2, 3);
-
-        mat.at(0, 0) = 1.0;
-        mat.at(0, 1) = 2.0;
-        mat.at(0, 2) = 3.0;
-        mat.at(1, 0) = 4.0;
-        mat.at(1, 1) = 5.0;
-        mat.at(1, 2) = 6.0;
-
-        std::cout << "Matrix before reshape:" << std::endl;
-        printMatrix(mat);
-
-        mat.reshape(3, 2);
-
-        std::cout << "Matrix after reshape:" << std::endl;
-        printMatrix(mat);
-    }
-
-private:
-    static void printMatrix(const linalg::Matrix& mat) {
-        for (size_t i = 0; i < mat.rows(); ++i) {
-            for (size_t j = 0; j < mat.columns(); ++j) {
-                std::cout << mat.at(i, j) << " ";
-            }
-            std::cout << std::endl;
-        }
-    }
-};
+#include "iostream"
 
 int main() {
-    Runner::run();
+    using namespace linalg;
+
+    Matrix m0;
+
+    Matrix m1(4);     // 4 rows, 1 column
+    Matrix m2(4, 6);  // 4 rows, 6 columns
+
+    Matrix m3(m1);
+
+    Matrix m4(std::move(m2));
+
+    Matrix m5 = {{1, 2, 3}, {4, 5, 6}};
+    Matrix m6 = {{1, 2, 3, 4, 5, 6}};
+    Matrix m7 = {1, 2, 3, 4, 5, 6};
+    Matrix m8 = {{1}, {2}, {3}, {4}, {5}, {6}};
+
+    std::cout << std:: endl;
+    m5.print();
+    std::cout << std::endl;
+    m7.print();
+    std::cout << std::endl;
+    m8.print();
+
     return 0;
 }
