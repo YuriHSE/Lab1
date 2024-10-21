@@ -1,6 +1,6 @@
 #include "../include/matrix.h"
-#include <iostream>
-#include <stdexcept>
+#include "iostream"
+#include "iomanip"
 
 namespace linalg {
 
@@ -129,12 +129,17 @@ namespace linalg {
         m_columns = new_cols;
     }
 
-    void Matrix::print() const {
-        for (size_t i = 0; i < m_rows; ++i) {
-            for (size_t j = 0; j < m_columns; ++j) {
-                std::cout << m_ptr[i * m_columns + j] << " ";
+    // Оператор вывода
+    std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
+        const int width = 3;  // Ширина для каждого элемента
+
+        for (size_t i = 0; i < matrix.rows(); ++i) {
+            for (size_t j = 0; j < matrix.columns(); ++j) {
+                os << std::setw(width) << matrix(i, j) << " ";  // Выравнивание и пробел
             }
-            std::cout << std::endl;
+            os << std::endl;  // Перевод строки после каждой строки матрицы
         }
+        return os;
     }
+
 }
