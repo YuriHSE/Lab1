@@ -220,6 +220,23 @@ namespace linalg {
         return *this;
     }
 
+    // Операторы сравнения
+    bool Matrix::operator==(const Matrix& other) const noexcept {
+        if (m_rows != other.m_rows || m_columns != other.m_columns) {
+            return false;
+        }
+        for (size_t i = 0; i < m_rows * m_columns; ++i) {
+            if (m_ptr[i] != other.m_ptr[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool Matrix::operator!=(const Matrix& other) const noexcept {
+        return !(*this == other);
+    }
+
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
         const int width = 3;  // Ширина для каждого элемента

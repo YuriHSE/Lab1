@@ -19,5 +19,14 @@ int main() {
     // Умножение матриц
     std::cout << "m1 * m4:\n" << m1 * m4 << std::endl;
 
+    // Сравнение матриц
+    if (m1 != m2) {
+        std::cout << "m1 != m2\n";
+    }
+
+    Matrix m6 = m1;
+    if (m6 == m1) {
+        std::cout << "m6 = m1" << std::endl;
+    }
     return 0;
 }
