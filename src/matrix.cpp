@@ -45,7 +45,7 @@ namespace linalg {
         size_t i = 0;
         for (const auto& row : list) {
             if (row.size() != m_columns) {
-                throw std::invalid_argument("All rows must have the same number of columns.");
+                throw std::invalid_argument("Строки должны иметь одинаковое количество столбцов");
             }
             std::copy(row.begin(), row.end(), m_ptr + i * m_columns);
             ++i;
@@ -70,7 +70,7 @@ namespace linalg {
     // Оператор присваивания: копирование
     Matrix& Matrix::operator=(const Matrix& other) {
         if (this != &other) {
-            delete[] m_ptr;  // Clean up current resources
+            delete[] m_ptr;
             allocateMemory(other.m_rows, other.m_columns);
             std::copy(other.m_ptr, other.m_ptr + m_rows * m_columns, m_ptr);
         }
@@ -129,8 +129,8 @@ namespace linalg {
         m_columns = new_cols;
     }
 
-    // Matrix addition
-    Matrix Matrix::add(const Matrix& other) const {
+    // Сложение матриц:
+    Matrix Matrix::operator+(const Matrix& other) const {
         if (m_rows != other.m_rows || m_columns != other.m_columns) {
             throw std::runtime_error("Не подходят размеры матриц");
         }
@@ -142,24 +142,40 @@ namespace linalg {
         return result;
     }
 
-    // Matrix multiplication
-    Matrix Matrix::multiply(const Matrix& other) const {
-        if (m_columns != other.m_rows) {
+    Matrix& Matrix::operator+=(const Matrix& other) {
+        if (m_rows != other.m_rows || m_columns != other.m_columns) {
             throw std::runtime_error("Не подходят размеры матриц");
         }
 
-        Matrix result(m_rows, other.m_columns);
-        for (size_t i = 0; i < m_rows; ++i) {
-            for (size_t j = 0; j < other.m_columns; ++j) {
-                result.m_ptr[i * other.m_columns + j] = 0;
-                for (size_t k = 0; k < m_columns; ++k) {
-                    result.m_ptr[i * other.m_columns + j] += m_ptr[i * m_columns + k] * other.m_ptr[k * other.m_columns + j];
-                }
-            }
+        for (size_t i = 0; i < m_rows * m_columns; ++i) {
+            m_ptr[i] += other.m_ptr[i];
+        }
+        return *this;
+    }
+
+    // Поэлементное вычитание
+    Matrix Matrix::operator-(const Matrix& other) const {
+        if (m_rows != other.m_rows || m_columns != other.m_columns) {
+            throw std::runtime_error("Не подходят размеры матриц");
+        }
+
+        Matrix result(m_rows, m_columns);
+        for (size_t i = 0; i < m_rows * m_columns; ++i) {
+            result.m_ptr[i] = m_ptr[i] - other.m_ptr[i];
         }
         return result;
     }
 
+    Matrix& Matrix::operator-=(const Matrix& other) {
+        if (m_rows != other.m_rows || m_columns != other.m_columns) {
+            throw std::runtime_error("Не подходят размеры матриц");
+        }
+
+        for (size_t i = 0; i < m_rows * m_columns; ++i) {
+            m_ptr[i] -= other.m_ptr[i];
+        }
+        return *this;
+    }
 
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
