@@ -1,6 +1,7 @@
 #include "../include/matrix.h"
 #include "iostream"
 #include "iomanip"
+#include "cmath"
 
 namespace linalg {
 
@@ -236,6 +237,27 @@ namespace linalg {
     bool Matrix::operator!=(const Matrix& other) const noexcept {
         return !(*this == other);
     }
+
+    double Matrix::norm() const {
+        double sum = 0;
+        for (size_t i = 0; i < m_rows * m_columns; ++i) {
+            sum += m_ptr[i] * m_ptr[i];
+        }
+        return std::sqrt(sum);
+    }
+
+    double Matrix::trace() const {
+        if (m_rows != m_columns) {
+            throw std::runtime_error("Матрица должна быть квадратной");
+        }
+
+        double trace = 0;
+        for (size_t i = 0; i < m_rows; ++i) {
+            trace += (*this)(i, i);
+        }
+        return trace;
+    }
+
 
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {

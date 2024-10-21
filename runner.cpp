@@ -4,29 +4,9 @@
 int main() {
     using namespace linalg;
 
-    Matrix m1 = {{1, 2, 3}, {4, 5, 6}};
-    Matrix m2 = {{7, 8, 9}, {10, 11, 12}};
-    Matrix m4 = {{1, 2}, {3, 4}, {5, 6}};
+    Matrix m = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-    // Операция сложения
-    Matrix m3 = m1 + m2;
-    std::cout << "m1 + m2:\n" << m3;
-
-    // Умножение на скаляр
-    m3 *= 2.0;
-    std::cout << "m3 * 2:\n" << m3 << std::endl;
-
-    // Умножение матриц
-    std::cout << "m1 * m4:\n" << m1 * m4 << std::endl;
-
-    // Сравнение матриц
-    if (m1 != m2) {
-        std::cout << "m1 != m2\n";
-    }
-
-    Matrix m6 = m1;
-    if (m6 == m1) {
-        std::cout << "m6 = m1" << std::endl;
-    }
+    std::cout << "Norm: " << m.norm() << std::endl;
+    std::cout << "Trace: " << m.trace() << std::endl;
     return 0;
 }

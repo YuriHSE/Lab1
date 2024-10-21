@@ -42,9 +42,6 @@ namespace linalg {
         // Оператор вывода
         friend std::ostream& operator<<(std::ostream& os, const Matrix& matrix);
 
-        // Matrix add(const Matrix& other) const;      // Операция сложения
-        // Matrix multiply(const Matrix& other) const; // Операция умножения
-
         // Операторы сложения
         Matrix operator+(const Matrix& other) const;
         Matrix& operator+=(const Matrix& other);
@@ -62,6 +59,11 @@ namespace linalg {
         // Операторы сравнения
         bool operator==(const Matrix& other) const noexcept;
         bool operator!=(const Matrix& other) const noexcept;
+
+        double norm() const; // Норма (Фробениуса)
+        double trace() const; // След
+        double det() const; // Определитель
+        int rank(); // Ранг
     };
 
 }
