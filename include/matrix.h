@@ -72,6 +72,11 @@ namespace linalg {
         static Matrix transpose(const Matrix& matr);
         static Matrix invert(const Matrix& matr);
         static Matrix power(const Matrix& matr, int exponent);
+
+        // Единичная матрица
+        static Matrix identity(size_t size);
+        // Алгоритм Гаусса
+        void gaussJordan(Matrix& identity) noexcept;
     };
 
 }

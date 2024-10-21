@@ -334,6 +334,75 @@ namespace linalg {
         return result;
     }
 
+    Matrix Matrix::transpose(const Matrix& matr) {
+        Matrix result(matr.columns(), matr.rows());
+        for (size_t i = 0; i < matr.rows(); ++i) {
+            for (size_t j = 0; j < matr.columns(); ++j) {
+                result(j, i) = matr(i, j);
+            }
+        }
+        return result;
+    }
+
+    Matrix Matrix::identity(size_t size) {
+        Matrix identity(size, size);
+        for (size_t i = 0; i < size; ++i) {
+            identity(i, i) = 1.0;  // Установка диагональных элементов в 1
+        }
+        return identity;
+    }
+
+    void Matrix::gaussJordan(Matrix& identity) noexcept {
+        size_t n = rows();
+        size_t m = columns();
+
+        // Проверка на совместимость
+        if (n != identity.rows() || n != identity.columns()) {
+            throw std::runtime_error("Неправильные размеры матрицы");
+        }
+
+        for (size_t i = 0; i < n; ++i) {
+            // Нормализация строки
+            double pivot = (*this)(i, i);
+            if (pivot == 0) {
+                throw std::runtime_error("Матрица сингулярна");
+            }
+
+            for (size_t j = 0; j < m; ++j) {
+                (*this)(i, j) /= pivot;
+                identity(i, j) /= pivot;  // Применение к единичной матрице
+            }
+
+            // Обнуление остальных элементов в столбце
+            for (size_t k = 0; k < n; ++k) {
+                if (k != i) {
+                    double factor = (*this)(k, i);
+                    for (size_t j = 0; j < m; ++j) {
+                        (*this)(k, j) -= factor * (*this)(i, j);
+                        identity(k, j) -= factor * identity(i, j);
+                    }
+                }
+            }
+        }
+    }
+
+    Matrix Matrix::invert(const Matrix& matr) {
+        if (matr.rows() != matr.columns()) {
+            throw std::runtime_error("Матрица должна быть квадратной");
+        }
+
+        // Создаём расширенную матрицу (матрица | единичная матрица)
+        Matrix result = matr;  // Копируем исходную матрицу
+        Matrix identity = Matrix::identity(matr.rows());  // Единичная матрица
+
+        // Применяем метод Гаусса для приведения матрицы к единичной
+        // и в процессе преобразуем единичную матрицу в обратную
+        result.gaussJordan(identity);
+
+        return identity;
+    }
+
+
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
         const int width = 3;  // Ширина для каждого элемента
