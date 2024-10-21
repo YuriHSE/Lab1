@@ -7,6 +7,8 @@ int main() {
     Matrix m1 = {{1, 2}, {3, 4}};
     Matrix m2 = {{5, 6}, {7, 8}};
     Matrix m3 = Matrix::invert(m2);
-    std::cout << m3;
+    std::cout << m3 << std::endl;
+    std::cout << Matrix::power(m1, 2) << std::endl;
+    std::cout << m1 * m1;
     return 0;
 }

@@ -402,6 +402,24 @@ namespace linalg {
         return identity;
     }
 
+    Matrix Matrix::power(const Matrix& matr, int exponent) {
+        if (matr.rows() != matr.columns()) {
+            throw std::runtime_error("Matrix must be square to raise to a power.");
+        }
+
+        Matrix result = Matrix::identity(matr.rows());  // Начинаем с единичной матрицы
+        Matrix base = matr;
+
+        while (exponent > 0) {
+            if (exponent % 2 == 1) {
+                result = result * base;  // Умножаем на базовую матрицу
+            }
+            base = base * base;  // Квадрат матрицы
+            exponent /= 2;
+        }
+
+        return result;
+    }
 
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
