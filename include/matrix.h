@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <initializer_list>
+#include <stdexcept>
 
 namespace linalg {
 
@@ -37,10 +38,12 @@ namespace linalg {
         size_t columns() const;
         bool empty() const;
         void reshape(size_t new_rows, size_t new_cols);
-        void print() const;
 
         // Оператор вывода
         friend std::ostream& operator<<(std::ostream& os, const Matrix& matrix);
+
+        Matrix add(const Matrix& other) const;      // Операция сложения
+        Matrix multiply(const Matrix& other) const; // Операция умножения
     };
 
 }
