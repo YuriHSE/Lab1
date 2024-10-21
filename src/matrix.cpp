@@ -258,6 +258,39 @@ namespace linalg {
         return trace;
     }
 
+    double Matrix::det() const {
+        if (m_rows != m_columns) {
+            throw std::runtime_error("Матрица должна быть квадратной");
+        }
+
+        if (m_rows == 1) return m_ptr[0];
+        if (m_rows == 2) {
+            return (*this)(0,0) * (*this)(1,1) - (*this)(0,1) * (*this)(1,0);
+        }
+
+        double determinant = 0.0;
+        for (size_t j = 0; j < m_columns; ++j) {
+            determinant += (j % 2 == 0 ? 1 : -1) * (*this)(0, j) * dopMatrix(0, j).det();
+        }
+        return determinant;
+    }
+
+    Matrix Matrix::dopMatrix(size_t row, size_t col) const {
+        Matrix sub(m_rows - 1, m_columns - 1);
+        size_t subi = 0;
+        for (size_t i = 0; i < m_rows; ++i) {
+            if (i == row) continue;
+            size_t subj = 0;
+            for (size_t j = 0; j < m_columns; ++j) {
+                if (j == col) continue;
+                sub(subi, subj) = (*this)(i, j);
+                ++subj;
+            }
+            ++subi;
+        }
+        return sub;
+    }
+
 
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {

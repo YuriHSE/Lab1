@@ -13,8 +13,11 @@ namespace linalg {
         size_t m_rows;
         size_t m_columns;
 
-        // Helper function to allocate memory
+        // Вспомогательная функция для выделения памяти
         void allocateMemory(size_t rows, size_t cols);
+
+        // Вспомогательный метод для нахождения определителя
+        Matrix dopMatrix(size_t row, size_t col) const;
 
     public:
         Matrix();

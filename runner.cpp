@@ -6,7 +6,8 @@ int main() {
 
     Matrix m = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-    std::cout << "Norm: " << m.norm() << std::endl;
-    std::cout << "Trace: " << m.trace() << std::endl;
+    std::cout << "Норма:" << m.norm() << std::endl;
+    std::cout << "След: " << m.trace() << std::endl;
+    std::cout << "Определитель: " << m.det() << std::endl;
     return 0;
 }
