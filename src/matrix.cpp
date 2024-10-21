@@ -177,6 +177,49 @@ namespace linalg {
         return *this;
     }
 
+    // Умножение матрицы на число
+    Matrix Matrix::operator*(double number) const {
+        Matrix result(m_rows, m_columns);
+        for (size_t i = 0; i < m_rows * m_columns; ++i) {
+            result.m_ptr[i] = m_ptr[i] * number;
+        }
+        return result;
+    }
+
+    Matrix& Matrix::operator*=(double number) {
+        for (size_t i = 0; i < m_rows * m_columns; ++i) {
+            m_ptr[i] *= number;
+        }
+        return *this;
+    }
+
+    // Умножение матриц
+    Matrix Matrix::operator*(const Matrix& other) const {
+        if (m_columns != other.m_rows) {
+            throw std::runtime_error("Не подходят размеры матриц");
+        }
+
+        Matrix result(m_rows, other.m_columns);
+        for (size_t i = 0; i < m_rows; ++i) {
+            for (size_t j = 0; j < other.m_columns; ++j) {
+                result.m_ptr[i * other.m_columns + j] = 0;
+                for (size_t k = 0; k < m_columns; ++k) {
+                    result.m_ptr[i * other.m_columns + j] += m_ptr[i * m_columns + k] * other.m_ptr[k * other.m_columns + j];
+                }
+            }
+        }
+        return result;
+    }
+
+    Matrix& Matrix::operator*=(const Matrix& other) {
+        if (m_columns != other.m_rows) {
+            throw std::runtime_error("Не подходят размеры матриц");
+        }
+
+        *this = *this * other;
+        return *this;
+    }
+
     // Оператор вывода
     std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
         const int width = 3;  // Ширина для каждого элемента

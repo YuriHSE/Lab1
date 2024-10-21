@@ -54,8 +54,8 @@ namespace linalg {
         Matrix& operator-=(const Matrix& other);
 
         // Операторы умножения
-        Matrix operator*(double scalar) const;
-        Matrix& operator*=(double scalar);
+        Matrix operator*(double number) const;
+        Matrix& operator*=(double number);
         Matrix operator*(const Matrix& other) const;
         Matrix& operator*=(const Matrix& other);
 
